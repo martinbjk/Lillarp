@@ -4,856 +4,254 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lillarp – Vår Sommarstuga</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --sand: #f5e6c8;
-      --driftwood: #c4a87a;
-      --sea: #4a8fa8;
-      --deep-sea: #2d6880;
-      --foam: #e8f4f8;
-      --grass: #6a9e6f;
-      --sky: #b8dce8;
-      --sunset: #e8855a;
-      --dark: #2a2420;
-      --white: #fdfaf5;
+      --pine:    #2d4a2d;
+      --moss:    #4a6741;
+      --fern:    #7a9e6a;
+      --sand:    #e8d5a3;
+      --beach:   #f2e4c0;
+      --sea:     #3d7a94;
+      --horizon: #5a9eb8;
+      --foam:    #c8e4ee;
+      --sun:     #f0b040;
+      --dusk:    #d4845a;
+      --bark:    #6b5040;
+      --cream:   #faf7f0;
+      --dark:    #1e2a1e;
     }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--dark); overflow-x:hidden; }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Lato', sans-serif;
-      background: var(--white);
-      color: var(--dark);
-      overflow-x: hidden;
-    }
-
-    /* ===== NAV ===== */
+    /* NAV */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 1000;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2.5rem;
-      background: rgba(253,250,245,0.92);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(196,168,122,0.3);
+      position:fixed; top:0; left:0; right:0; z-index:1000;
+      display:flex; justify-content:space-between; align-items:center;
+      padding:0.6rem 2rem;
+      background:rgba(250,247,240,0.94);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(45,74,45,0.12);
     }
+    .nav-logo { font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:600; color:var(--pine); letter-spacing:0.04em; }
+    .nav-links { display:flex; gap:1.5rem; list-style:none; }
+    .nav-links a { text-decoration:none; color:var(--bark); font-size:0.72rem; font-weight:500; letter-spacing:0.14em; text-transform:uppercase; transition:color 0.2s; }
+    .nav-links a:hover { color:var(--pine); }
 
-    .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      color: var(--deep-sea);
-      letter-spacing: 0.05em;
+    /* HERO */
+    .hero { min-height:100vh; position:relative; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+    .hero-sky {
+      position:absolute; inset:0;
+      background:linear-gradient(180deg, #7ab8d4 0%, #a8d4e8 25%, #c8e8f4 42%, #ddeef5 52%, #e8d5a3 68%, #c8b882 78%, #2d4a2d 78%, #1a321a 100%);
     }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
+    .hero-sun {
+      position:absolute; top:13%; left:50%; transform:translateX(-50%);
+      width:140px; height:140px; border-radius:50%;
+      background:radial-gradient(circle, #fffbe0 15%, #f8d050 50%, #eda030 80%, #e07020 100%);
+      box-shadow: 0 0 0 18px rgba(248,208,80,0.09), 0 0 0 45px rgba(248,208,80,0.06), 0 0 90px 35px rgba(240,176,48,0.38), 0 0 220px 90px rgba(240,150,30,0.16);
+      animation:sun-pulse 5s ease-in-out infinite;
     }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--dark);
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      transition: color 0.2s;
+    @keyframes sun-pulse {
+      0%,100% { box-shadow:0 0 0 18px rgba(248,208,80,0.09),0 0 0 45px rgba(248,208,80,0.06),0 0 90px 35px rgba(240,176,48,0.38),0 0 220px 90px rgba(240,150,30,0.16); }
+      50%      { box-shadow:0 0 0 26px rgba(248,208,80,0.12),0 0 0 65px rgba(248,208,80,0.08),0 0 130px 55px rgba(240,176,48,0.44),0 0 280px 110px rgba(240,150,30,0.2); }
     }
-
-    .nav-links a:hover { color: var(--sea); }
-
-    /* ===== HERO ===== */
-    .hero {
-      min-height: 100vh;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
+    .hero-rays {
+      position:absolute; top:0; left:50%;
+      width:600px; height:600px;
+      margin-left:-300px; margin-top:-80px;
+      pointer-events:none;
+      animation:rays-spin 45s linear infinite;
     }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background: 
-        radial-gradient(ellipse at 20% 80%, rgba(74,143,168,0.25) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 20%, rgba(106,158,111,0.2) 0%, transparent 50%),
-        radial-gradient(ellipse at 50% 50%, rgba(245,230,200,0.6) 0%, transparent 80%),
-        linear-gradient(160deg, #e8f4f8 0%, #f5e6c8 40%, #b8dce8 100%);
+    @keyframes rays-spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+    .hero-rays::before {
+      content:''; position:absolute; inset:0;
+      background:repeating-conic-gradient(rgba(248,208,80,0.05) 0deg 10deg, transparent 10deg 20deg);
+      border-radius:50%;
     }
-
-    /* Animated waves */
-    .waves {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 180px;
+    .hero-water {
+      position:absolute; bottom:14%; left:0; right:0; height:28%;
+      background:linear-gradient(180deg, rgba(58,120,148,0) 0%, rgba(58,120,148,0.18) 40%, rgba(40,90,115,0.42) 100%);
     }
-
-    .wave {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
+    .hero-beach-strip {
+      position:absolute; bottom:11.5%; left:0; right:0; height:5%;
+      background:linear-gradient(180deg, rgba(232,213,163,0) 0%, rgba(210,188,130,0.65) 100%);
     }
-
-    .wave1 {
-      animation: wave 8s ease-in-out infinite;
+    .hero-forest {
+      position:absolute; bottom:0; left:0; right:0; height:18%;
     }
-    .wave2 {
-      animation: wave 10s ease-in-out infinite reverse;
-      opacity: 0.6;
-    }
-    .wave3 {
-      animation: wave 12s ease-in-out infinite;
-      opacity: 0.4;
-    }
-
-    @keyframes wave {
-      0%, 100% { transform: translateX(0); }
-      50% { transform: translateX(-3%); }
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      padding: 2rem;
-    }
-
-    .hero-eyebrow {
-      font-size: 0.8rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--sea);
-      margin-bottom: 1.2rem;
-      font-weight: 700;
-    }
-
+    .hero-waves { position:absolute; bottom:11.5%; left:0; right:0; height:70px; pointer-events:none; }
+    .hero-waves svg { position:absolute; bottom:0; width:100%; }
+    .wa { animation:wd 7s ease-in-out infinite; }
+    .wb { animation:wd 10s ease-in-out infinite reverse; opacity:0.65; }
+    .wc { animation:wd 13s ease-in-out infinite; opacity:0.45; }
+    @keyframes wd { 0%,100%{transform:translateX(0) scaleY(1)} 50%{transform:translateX(-2%) scaleY(1.1)} }
+    .bird { position:absolute; font-size:1.1rem; opacity:0.45; animation:bfly 24s linear infinite; }
+    .bird:nth-child(1){top:21%;}
+    .bird:nth-child(2){top:27%;animation-duration:32s;animation-delay:-11s;font-size:0.8rem;opacity:0.3;}
+    .bird:nth-child(3){top:17%;animation-duration:28s;animation-delay:-19s;font-size:0.65rem;opacity:0.25;}
+    @keyframes bfly{from{transform:translateX(-4vw)}to{transform:translateX(104vw)}}
+    .hero-content { position:relative; z-index:10; text-align:center; padding:2rem; }
+    .hero-eyebrow { font-size:0.7rem; letter-spacing:0.38em; text-transform:uppercase; color:rgba(255,255,255,0.72); margin-bottom:1.2rem; font-weight:500; }
     .hero-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(3.5rem, 10vw, 7rem);
-      color: var(--deep-sea);
-      line-height: 1.0;
-      margin-bottom: 0.5rem;
+      font-family:'Cormorant Garamond',serif;
+      font-size:clamp(5.5rem,17vw,13rem);
+      font-weight:300; line-height:0.88; color:white;
+      text-shadow:0 4px 50px rgba(0,0,0,0.28), 0 0 100px rgba(248,208,80,0.18);
+      margin-bottom:1rem; letter-spacing:0.02em;
     }
-
-    .hero-title em {
-      font-style: italic;
-      color: var(--sunset);
-    }
-
+    .hero-title em { font-style:italic; color:#fff8c0; }
     .hero-sub {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 1.3rem;
-      color: var(--driftwood);
-      margin-bottom: 2.5rem;
-    }
-
-    .hero-address {
-      display: inline-block;
-      background: rgba(255,255,255,0.7);
-      border: 1px solid var(--driftwood);
-      border-radius: 2px;
-      padding: 0.7rem 1.5rem;
-      font-size: 0.85rem;
-      letter-spacing: 0.08em;
-      color: var(--deep-sea);
-    }
-
-    .floating-sun {
-      position: absolute;
-      top: 12%;
-      right: 12%;
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      background: radial-gradient(circle, #ffe066 30%, #ffb830 70%, #e8855a 100%);
-      box-shadow: 0 0 60px 20px rgba(255,184,48,0.3), 0 0 120px 40px rgba(232,133,90,0.15);
-      animation: pulse-sun 6s ease-in-out infinite;
-    }
-
-    @keyframes pulse-sun {
-      0%, 100% { transform: scale(1); box-shadow: 0 0 60px 20px rgba(255,184,48,0.3), 0 0 120px 40px rgba(232,133,90,0.15); }
-      50% { transform: scale(1.05); box-shadow: 0 0 80px 30px rgba(255,184,48,0.4), 0 0 150px 60px rgba(232,133,90,0.2); }
-    }
-
-    .seagull {
-      position: absolute;
-      font-size: 1.5rem;
-      opacity: 0.4;
-      animation: fly 20s linear infinite;
-    }
-    .seagull:nth-child(2) { animation-delay: -7s; top: 20%; font-size: 1rem; }
-    .seagull:nth-child(3) { animation-delay: -14s; top: 30%; font-size: 0.8rem; }
-
-    @keyframes fly {
-      from { transform: translateX(-10vw); }
-      to { transform: translateX(110vw); }
-    }
-
-    /* ===== SECTIONS ===== */
-    section {
-      padding: 5rem 2rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .section-full {
-      max-width: 100%;
-      padding: 5rem 2rem;
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-
-    .section-header h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 5vw, 3rem);
-      color: var(--deep-sea);
-      margin-bottom: 0.5rem;
-    }
-
-    .section-header p {
-      color: var(--driftwood);
-      font-style: italic;
-      font-size: 1.05rem;
-    }
-
-    .divider {
-      width: 60px;
-      height: 3px;
-      background: linear-gradient(90deg, var(--sea), var(--grass));
-      margin: 1rem auto;
-      border-radius: 2px;
-    }
-
-    /* ===== INFO CARDS ===== */
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .info-card {
-      background: var(--white);
-      border: 1px solid rgba(196,168,122,0.3);
-      border-radius: 4px;
-      padding: 2rem;
-      transition: transform 0.3s, box-shadow 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .info-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--sea), var(--grass));
-    }
-
-    .info-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 30px rgba(45,104,128,0.12);
-    }
-
-    .info-card h3 {
-      font-family: 'Playfair Display', serif;
-      color: var(--deep-sea);
-      font-size: 1.3rem;
-      margin-bottom: 1rem;
-    }
-
-    .info-card p, .info-card li {
-      color: #5a5045;
-      line-height: 1.7;
-      font-size: 0.95rem;
-    }
-
-    .info-card ul { padding-left: 1.2rem; }
-
-    .card-icon {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    /* ===== SCHEMA ===== */
-    .schema-section {
-      background: linear-gradient(135deg, #e8f4f8 0%, #f5e6c8 100%);
-      padding: 5rem 2rem;
-    }
-
-    .schema-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .schema-card {
-      background: white;
-      border-radius: 4px;
-      padding: 1.8rem;
-      text-align: center;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-      position: relative;
-    }
-
-    .schema-card.current {
-      border: 2px solid var(--sunset);
-    }
-
-    .schema-card.current::after {
-      content: 'I år';
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--sunset);
-      color: white;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 2px 10px;
-      border-radius: 10px;
-    }
-
-    .schema-month {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      color: var(--deep-sea);
-      margin-bottom: 0.5rem;
-    }
-
-    .schema-family {
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--driftwood);
-    }
-
-    .schema-note {
-      font-size: 0.8rem;
-      color: #aaa;
-      margin-top: 0.8rem;
-      font-style: italic;
-    }
-
-    /* ===== KARTOR ===== */
-    .maps-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-
-    .map-card {
-      border: 1px solid rgba(196,168,122,0.3);
-      border-radius: 4px;
-      overflow: hidden;
-    }
-
-    .map-card-header {
-      background: var(--deep-sea);
-      color: white;
-      padding: 1rem 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
-
-    .map-card-header h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-    }
-
-    .map-card-header span { font-size: 1.3rem; }
-
-    .map-preview {
-      width: 100%;
-      height: 220px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 1rem;
-      background: linear-gradient(135deg, #e8f4f8 0%, #d4eaf2 100%);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .map-preview.lantmat {
-      background: linear-gradient(135deg, #f0f7eb 0%, #dcefd8 100%);
-    }
-
-    .map-preview-icon {
-      font-size: 3.5rem;
-      line-height: 1;
-    }
-
-    .map-preview-text {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      color: var(--deep-sea);
-      text-align: center;
-    }
-
-    .map-preview-coords {
-      font-size: 0.75rem;
-      color: var(--driftwood);
-      letter-spacing: 0.05em;
-    }
-
-    .map-card-footer {
-      padding: 1rem 1.5rem;
-      background: var(--foam);
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .map-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      text-decoration: none;
-      color: var(--sea);
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      border: 1px solid var(--sea);
-      padding: 0.4rem 1rem;
-      border-radius: 2px;
-      transition: all 0.2s;
-    }
-
-    .map-link:hover {
-      background: var(--sea);
-      color: white;
-    }
-
-    /* ===== VÄDER ===== */
-    .weather-section {
-      background: linear-gradient(160deg, var(--deep-sea) 0%, #1a4a5e 100%);
-      color: white;
-      padding: 5rem 2rem;
-    }
-
-    .weather-section .section-header h2 { color: white; }
-    .weather-section .section-header p { color: rgba(255,255,255,0.6); }
-    .weather-section .divider { background: linear-gradient(90deg, var(--sky), var(--sunset)); }
-
-    .weather-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .weather-card {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 4px;
-      padding: 2rem;
-      text-align: center;
-      backdrop-filter: blur(10px);
-    }
-
-    .weather-station {
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--sky);
-      margin-bottom: 1rem;
-    }
-
-    .weather-temp {
-      font-family: 'Playfair Display', serif;
-      font-size: 3.5rem;
-      line-height: 1;
-      margin-bottom: 0.5rem;
-    }
-
-    .weather-desc {
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.7);
-      margin-bottom: 1.5rem;
-    }
-
-    .weather-details {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.8rem;
-      font-size: 0.8rem;
-    }
-
-    .weather-detail {
-      background: rgba(255,255,255,0.06);
-      border-radius: 3px;
-      padding: 0.5rem;
-    }
-
-    .weather-detail-label {
-      color: rgba(255,255,255,0.5);
-      display: block;
-      margin-bottom: 0.2rem;
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    .weather-detail-value {
-      font-weight: 700;
-      color: white;
-    }
-
-    .weather-date {
-      text-align: center;
-      color: rgba(255,255,255,0.4);
-      font-size: 0.8rem;
-      margin-top: 1.5rem;
-      font-style: italic;
-    }
-
-    /* ===== GALLERY ===== */
-    .gallery-section {
-      background: var(--sand);
-      padding: 5rem 2rem;
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: auto;
-      gap: 1rem;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .gallery-item {
-      border-radius: 3px;
-      overflow: hidden;
-      cursor: pointer;
-      position: relative;
-      aspect-ratio: 1;
-      background: rgba(196,168,122,0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.3s;
-    }
-
-    .gallery-item:hover { transform: scale(1.02); }
-
-    .gallery-item.large {
-      grid-column: span 2;
-      grid-row: span 2;
-      aspect-ratio: unset;
-      min-height: 300px;
-    }
-
-    .gallery-placeholder {
-      text-align: center;
-      color: var(--driftwood);
-    }
-
-    .gallery-placeholder span {
-      font-size: 2.5rem;
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-
-    .gallery-placeholder p {
-      font-size: 0.8rem;
-      font-style: italic;
-    }
-
-    .gallery-upload-btn {
-      display: block;
-      margin: 2rem auto 0;
-      background: var(--deep-sea);
-      color: white;
-      border: none;
-      padding: 0.8rem 2rem;
-      font-family: 'Lato', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      border-radius: 2px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .gallery-upload-btn:hover { background: var(--sea); }
-
-    /* Gallery modal */
-    .gallery-modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.9);
-      z-index: 2000;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .gallery-modal.open { display: flex; }
-
-    .gallery-modal img {
-      max-width: 90vw;
-      max-height: 90vh;
-      object-fit: contain;
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
-      color: white;
-      font-size: 2rem;
-      cursor: pointer;
-      background: none;
-      border: none;
-      line-height: 1;
-    }
-
-    /* ===== DAGBOK ===== */
-    .diary-section {
-      padding: 5rem 2rem;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .diary-entry-form {
-      background: var(--white);
-      border: 1px solid rgba(196,168,122,0.4);
-      border-radius: 4px;
-      padding: 2rem;
-      margin-bottom: 2.5rem;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-    }
-
-    .diary-entry-form textarea {
-      width: 100%;
-      min-height: 120px;
-      border: 1px solid rgba(196,168,122,0.4);
-      border-radius: 3px;
-      padding: 1rem;
-      font-family: 'Lato', sans-serif;
-      font-size: 0.95rem;
-      resize: vertical;
-      outline: none;
-      transition: border-color 0.2s;
-      background: var(--white);
-    }
-
-    .diary-entry-form textarea:focus {
-      border-color: var(--sea);
-    }
-
-    .diary-form-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 1rem;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .diary-author {
-      display: flex;
-      gap: 0.5rem;
-      flex: 1;
-    }
-
-    .diary-author select,
-    .diary-author input {
-      border: 1px solid rgba(196,168,122,0.4);
-      border-radius: 3px;
-      padding: 0.5rem 0.8rem;
-      font-family: 'Lato', sans-serif;
-      font-size: 0.85rem;
-      outline: none;
-      background: white;
-    }
-
-    .btn-post {
-      background: var(--grass);
-      color: white;
-      border: none;
-      padding: 0.6rem 1.5rem;
-      font-family: 'Lato', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border-radius: 2px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    .btn-post:hover { background: var(--deep-sea); }
-
-    .diary-entries { display: flex; flex-direction: column; gap: 1.2rem; }
-
-    .diary-entry {
-      background: white;
-      border-left: 4px solid var(--sea);
-      border-radius: 0 4px 4px 0;
-      padding: 1.2rem 1.5rem;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-    }
-
-    .diary-entry.family-2 { border-left-color: var(--sunset); }
-    .diary-entry.family-3 { border-left-color: var(--grass); }
-
-    .diary-entry-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.7rem;
-    }
-
-    .diary-entry-author {
-      font-weight: 700;
-      color: var(--sea);
-      font-size: 0.85rem;
-      letter-spacing: 0.05em;
-    }
-
-    .diary-entry.family-2 .diary-entry-author { color: var(--sunset); }
-    .diary-entry.family-3 .diary-entry-author { color: var(--grass); }
-
-    .diary-entry-date {
-      font-size: 0.75rem;
-      color: #aaa;
-    }
-
-    .diary-entry p {
-      color: #5a5045;
-      line-height: 1.6;
-      font-size: 0.95rem;
-    }
-
-    /* ===== PROJEKT ===== */
-    .projects-section {
-      background: linear-gradient(160deg, #f0f7eb 0%, #e8f4f8 100%);
-      padding: 5rem 2rem;
-    }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.2rem;
-      max-width: 1000px;
-      margin: 0 auto 2rem;
-    }
-
-    .project-card {
-      background: white;
-      border-radius: 4px;
-      padding: 1.5rem;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    }
-
-    .project-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 0.8rem;
-    }
-
-    .project-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem;
-      color: var(--deep-sea);
-    }
-
-    .project-status {
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 3px 8px;
-      border-radius: 10px;
-    }
-
-    .status-plan { background: #e8f4f8; color: var(--sea); }
-    .status-progress { background: #fff3e0; color: #e06020; }
-    .status-done { background: #e8f5e9; color: var(--grass); }
-
-    .project-desc {
-      font-size: 0.88rem;
-      color: #6a6058;
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
-
-    .project-progress-bar {
-      height: 4px;
-      background: rgba(196,168,122,0.2);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-
-    .project-progress-fill {
-      height: 100%;
-      border-radius: 2px;
-      background: linear-gradient(90deg, var(--sea), var(--grass));
-    }
-
-    /* ===== FOOTER ===== */
-    footer {
-      background: var(--dark);
-      color: rgba(255,255,255,0.5);
-      text-align: center;
-      padding: 2.5rem 2rem;
-      font-size: 0.8rem;
-      letter-spacing: 0.08em;
-    }
-
-    footer strong { color: rgba(255,255,255,0.8); font-family: 'Playfair Display', serif; font-weight: 400; }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 700px) {
-      .nav-links { display: none; }
-      .maps-grid, .weather-grid, .schema-grid { grid-template-columns: 1fr; }
-      .gallery-grid { grid-template-columns: 1fr 1fr; }
-      .gallery-item.large { grid-column: span 1; grid-row: span 1; }
-    }
-
-    /* Scroll animation */
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: none;
+      font-family:'Cormorant Garamond',serif; font-style:italic;
+      font-size:1.45rem; font-weight:300;
+      color:rgba(255,255,255,0.82); margin-bottom:2.5rem;
+      text-shadow:0 2px 24px rgba(0,0,0,0.3);
+    }
+    .hero-badge {
+      display:inline-flex; align-items:center; gap:0.5rem;
+      background:rgba(255,255,255,0.16); border:1px solid rgba(255,255,255,0.32);
+      border-radius:2px; padding:0.5rem 1.2rem;
+      font-size:0.8rem; letter-spacing:0.07em; color:rgba(255,255,255,0.88);
+      backdrop-filter:blur(8px);
+    }
+    .hero-scroll {
+      position:absolute; bottom:2.5rem; left:50%; transform:translateX(-50%);
+      z-index:10; display:flex; flex-direction:column; align-items:center; gap:0.3rem;
+      color:rgba(255,255,255,0.45); font-size:0.62rem; letter-spacing:0.22em; text-transform:uppercase;
+      animation:sb 2.2s ease-in-out infinite;
+    }
+    @keyframes sb{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(7px)}}
+
+    /* SECTIONS */
+    .sw { max-width:1040px; margin:0 auto; padding:3.5rem 2rem; }
+    .sh { text-align:center; margin-bottom:2.2rem; }
+    .sh h2 { font-family:'Cormorant Garamond',serif; font-size:clamp(1.7rem,4vw,2.6rem); color:var(--pine); margin-bottom:0.3rem; font-weight:400; }
+    .sh p { color:var(--bark); font-style:italic; font-size:0.92rem; }
+    .div { width:44px; height:2px; margin:0.6rem auto; background:linear-gradient(90deg,var(--sea),var(--fern)); border-radius:2px; }
+
+    /* OM */
+    .info-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:0.9rem; }
+    .ic {
+      background:white; border-radius:3px; padding:1.3rem;
+      border:1px solid rgba(45,74,45,0.1); border-top:3px solid var(--fern);
+      transition:transform 0.22s,box-shadow 0.22s;
+    }
+    .ic:nth-child(2){border-top-color:var(--sea);}
+    .ic:nth-child(3){border-top-color:var(--sun);}
+    .ic:nth-child(4){border-top-color:var(--dusk);}
+    .ic:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(45,74,45,0.1);}
+    .ic-icon{font-size:1.5rem;margin-bottom:0.6rem;}
+    .ic h3{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--pine);margin-bottom:0.5rem;font-weight:600;}
+    .ic p,.ic li{font-size:0.85rem;color:#5a5040;line-height:1.65;}
+    .ic ul{padding-left:1rem;}
+
+    /* SCHEMA */
+    .schema-bg { background:linear-gradient(135deg,#e5f0e5,#d2e8da,#c5dfe8); padding:3rem 2rem; }
+    .schema-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:680px;margin:0 auto;}
+    .sc{background:white;border-radius:3px;padding:1.3rem 1rem;text-align:center;box-shadow:0 3px 14px rgba(0,0,0,0.07);position:relative;}
+    .sc.active{border:2px solid var(--dusk);}
+    .sc.active::before{content:'I år';position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--dusk);color:white;font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:2px 8px;border-radius:8px;}
+    .sc-month{font-family:'Cormorant Garamond',serif;font-size:1.9rem;color:var(--pine);margin-bottom:0.25rem;}
+    .sc-fam{font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--bark);}
+    .sc-dates{font-size:0.72rem;color:#bbb;margin-top:0.5rem;font-style:italic;}
+
+    /* KARTOR */
+    .maps-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:820px;margin:0 auto;}
+    .mt{background:white;border-radius:3px;border:1px solid rgba(45,74,45,0.1);overflow:hidden;}
+    .mt-head{background:var(--pine);color:white;padding:0.6rem 1rem;display:flex;align-items:center;gap:0.5rem;}
+    .mt-head h3{font-size:0.88rem;font-weight:500;}
+    .mt-vis{padding:0.9rem;display:flex;align-items:center;gap:0.9rem;background:linear-gradient(135deg,#e5f0e5,#d0e8f0);text-decoration:none;transition:opacity 0.18s;}
+    .mt-vis:hover{opacity:0.82;}
+    .mt-icon{font-size:1.8rem;flex-shrink:0;}
+    .mt-info strong{display:block;font-size:0.82rem;color:var(--pine);margin-bottom:0.15rem;}
+    .mt-info small{font-size:0.69rem;color:#7a8a7a;font-family:monospace;}
+    .mt-coords{padding:0.4rem 1rem;background:#f5f8f5;border-top:1px solid rgba(45,74,45,0.06);font-family:monospace;font-size:0.66rem;color:#8a9a8a;display:flex;gap:0.8rem;flex-wrap:wrap;}
+    .mt-links{display:flex;flex-wrap:wrap;gap:0.35rem;padding:0.6rem 0.9rem;border-top:1px solid rgba(45,74,45,0.07);}
+    .mb{display:inline-flex;align-items:center;gap:0.25rem;text-decoration:none;font-size:0.7rem;font-weight:600;letter-spacing:0.06em;color:var(--sea);border:1px solid rgba(61,122,148,0.32);padding:0.28rem 0.65rem;border-radius:2px;transition:all 0.16s;}
+    .mb:hover{background:var(--sea);color:white;border-color:var(--sea);}
+
+    /* VÄDER */
+    .w-bg{background:linear-gradient(160deg,#1c3848 0%,#2a587a 50%,#183228 100%);padding:3rem 2rem;}
+    .w-bg .sh h2{color:white;} .w-bg .sh p{color:rgba(255,255,255,0.5);} .w-bg .div{background:linear-gradient(90deg,#a0d0e8,var(--dusk));}
+    .w-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:680px;margin:0 auto;}
+    .wc{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.11);border-radius:3px;padding:1.3rem;backdrop-filter:blur(10px);}
+    .ws{font-size:0.65rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#9ccce0;margin-bottom:0.6rem;}
+    .wt{font-family:'Cormorant Garamond',serif;font-size:3rem;line-height:1;color:white;margin-bottom:0.25rem;}
+    .wd{font-size:0.82rem;color:rgba(255,255,255,0.6);margin-bottom:1rem;}
+    .wg{display:grid;grid-template-columns:1fr 1fr;gap:0.4rem;}
+    .wi{background:rgba(255,255,255,0.05);border-radius:2px;padding:0.35rem 0.5rem;}
+    .wl{display:block;font-size:0.59rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.38);margin-bottom:0.1rem;}
+    .wv{font-size:0.8rem;font-weight:600;color:white;}
+    .w-foot{text-align:center;margin-top:1rem;color:rgba(255,255,255,0.28);font-size:0.73rem;font-style:italic;}
+
+    /* GALLERI */
+    .g-bg{background:var(--beach);padding:3rem 2rem;}
+    .g-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:150px;gap:0.5rem;max-width:920px;margin:0 auto;}
+    .gi{border-radius:2px;overflow:hidden;background:rgba(196,168,122,0.2);cursor:pointer;position:relative;display:flex;align-items:center;justify-content:center;transition:transform 0.22s;}
+    .gi:hover{transform:scale(1.025);z-index:2;}
+    .gi.gb{grid-column:span 2;grid-row:span 2;}
+    .gp{text-align:center;color:var(--bark);opacity:0.55;}
+    .gp span{font-size:1.8rem;display:block;margin-bottom:0.2rem;}
+    .gp p{font-size:0.68rem;font-style:italic;}
+    .gi img{width:100%;height:100%;object-fit:cover;}
+    .g-btn{display:block;margin:1rem auto 0;background:var(--pine);color:white;border:none;padding:0.6rem 1.6rem;font-family:'DM Sans',sans-serif;font-size:0.76rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;border-radius:2px;cursor:pointer;transition:background 0.2s;}
+    .g-btn:hover{background:var(--sea);}
+    .gm{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.93);z-index:2000;align-items:center;justify-content:center;}
+    .gm.open{display:flex;}
+    .gm img{max-width:92vw;max-height:92vh;object-fit:contain;}
+    .gm-close{position:absolute;top:1.1rem;right:1.4rem;color:white;font-size:2rem;cursor:pointer;background:none;border:none;}
+
+    /* DAGBOK */
+    .db-bg{background:var(--cream);padding:3rem 2rem;}
+    .dw{max-width:680px;margin:0 auto;}
+    .df{background:white;border-radius:3px;border:1px solid rgba(45,74,45,0.1);padding:1.3rem;margin-bottom:1.5rem;}
+    .df textarea{width:100%;min-height:90px;border:1px solid rgba(45,74,45,0.14);border-radius:2px;padding:0.7rem;resize:vertical;font-family:'DM Sans',sans-serif;font-size:0.88rem;outline:none;background:var(--cream);transition:border-color 0.2s;}
+    .df textarea:focus{border-color:var(--sea);}
+    .df-foot{display:flex;justify-content:space-between;align-items:center;margin-top:0.7rem;gap:0.7rem;flex-wrap:wrap;}
+    .dw-sel{display:flex;gap:0.4rem;flex:1;}
+    .dw-sel select,.dw-sel input{border:1px solid rgba(45,74,45,0.14);border-radius:2px;padding:0.38rem 0.65rem;font-family:'DM Sans',sans-serif;font-size:0.8rem;outline:none;background:white;}
+    .bp{background:var(--moss);color:white;border:none;padding:0.45rem 1.2rem;font-family:'DM Sans',sans-serif;font-size:0.76rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;border-radius:2px;cursor:pointer;transition:background 0.2s;}
+    .bp:hover{background:var(--pine);}
+    .de-list{display:flex;flex-direction:column;gap:0.7rem;}
+    .de{background:white;border-left:3px solid var(--sea);border-radius:0 3px 3px 0;padding:0.9rem 1.1rem;box-shadow:0 2px 8px rgba(0,0,0,0.04);}
+    .de.f2{border-left-color:var(--dusk);}
+    .de.f3{border-left-color:var(--fern);}
+    .de-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.4rem;}
+    .de-auth{font-weight:700;font-size:0.78rem;color:var(--sea);letter-spacing:0.04em;}
+    .de.f2 .de-auth{color:var(--dusk);} .de.f3 .de-auth{color:var(--fern);}
+    .de-date{font-size:0.7rem;color:#bbb;}
+    .de p{font-size:0.86rem;color:#5a5040;line-height:1.6;}
+
+    /* PROJEKT */
+    .pj-bg{background:linear-gradient(160deg,#e5f0e5,#d8eef5);padding:3rem 2rem;}
+    .pj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:0.9rem;max-width:920px;margin:0 auto 1.2rem;}
+    .pjc{background:white;border-radius:3px;padding:1.1rem;box-shadow:0 2px 10px rgba(0,0,0,0.05);}
+    .pjh{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.5rem;}
+    .pjt{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--pine);font-weight:600;}
+    .pb{font-size:0.6rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:2px 7px;border-radius:7px;}
+    .sp{background:#e5eef5;color:var(--sea);} .sg{background:#fff3e0;color:#c06018;} .sd{background:#e5f2e5;color:var(--moss);}
+    .pjd{font-size:0.8rem;color:#6a6058;line-height:1.55;margin-bottom:0.7rem;}
+    .pbar{height:3px;background:rgba(45,74,45,0.1);border-radius:2px;overflow:hidden;}
+    .pfill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--sea),var(--fern));}
+    .add-b{display:block;margin:0 auto;background:var(--pine);color:white;border:none;padding:0.55rem 1.5rem;font-family:'DM Sans',sans-serif;font-size:0.76rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;border-radius:2px;cursor:pointer;transition:background 0.2s;}
+    .add-b:hover{background:var(--sea);}
+
+    footer{background:var(--dark);color:rgba(255,255,255,0.42);text-align:center;padding:1.8rem 2rem;font-size:0.76rem;letter-spacing:0.07em;}
+    footer strong{color:rgba(255,255,255,0.72);font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:400;}
+
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}
+    .reveal.visible{opacity:1;transform:none;}
+
+    @media(max-width:660px){
+      .nav-links{display:none;}
+      .maps-grid,.w-grid,.schema-grid{grid-template-columns:1fr;}
+      .g-grid{grid-template-columns:repeat(2,1fr);}
+      .gi.gb{grid-column:span 1;grid-row:span 1;}
     }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="nav-logo">🌿 Lillarp</div>
   <ul class="nav-links">
@@ -869,443 +267,213 @@
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-bg"></div>
-  <div class="floating-sun"></div>
-  <span class="seagull">🕊</span>
-  <span class="seagull">🕊</span>
-  <span class="seagull">🕊</span>
+  <div class="hero-sky"></div>
+  <div class="hero-rays"></div>
+  <div class="hero-sun"></div>
+  <div class="hero-water"></div>
+  <div class="hero-beach-strip"></div>
+
+  <div class="hero-forest">
+    <svg viewBox="0 0 1440 200" preserveAspectRatio="none" style="width:100%;height:100%;display:block;">
+      <path d="M0,200 L0,100 L30,58 L60,98 L80,38 L105,82 L130,18 L158,68 L182,28 L210,70 L240,8 L268,58 L298,22 L328,64 L358,12 L388,55 L418,18 L450,60 L480,4 L510,54 L540,16 L570,56 L600,6 L632,52 L660,18 L692,60 L720,8 L752,54 L782,20 L812,60 L842,10 L872,55 L902,16 L932,60 L962,6 L994,56 L1022,18 L1054,60 L1082,12 L1114,57 L1142,16 L1174,60 L1202,8 L1232,54 L1262,20 L1292,63 L1322,16 L1352,60 L1382,18 L1412,63 L1440,28 L1440,200 Z" fill="#1a321a"/>
+      <path d="M0,200 L0,122 L26,86 L54,118 L76,66 L102,102 L128,54 L156,92 L184,50 L214,86 L242,40 L272,78 L302,44 L332,80 L362,36 L392,74 L422,40 L454,78 L482,30 L514,70 L542,38 L574,76 L602,28 L634,68 L662,36 L694,76 L722,26 L754,68 L784,38 L814,76 L844,28 L874,70 L904,36 L934,76 L962,26 L994,70 L1022,36 L1054,76 L1082,30 L1114,72 L1142,36 L1174,76 L1202,26 L1232,70 L1262,38 L1292,78 L1322,32 L1352,74 L1382,36 L1414,78 L1440,42 L1440,200 Z" fill="#2d4a2d"/>
+    </svg>
+  </div>
+
+  <div class="hero-waves">
+    <svg class="wa" viewBox="0 0 1440 70" fill="none"><path d="M0,35 C240,62 480,8 720,35 C960,62 1200,8 1440,35 L1440,70 L0,70 Z" fill="rgba(58,120,148,0.22)"/></svg>
+    <svg class="wb" viewBox="0 0 1440 70" fill="none" style="position:absolute;bottom:0;"><path d="M0,45 C360,12 720,62 1080,28 C1260,12 1380,45 1440,45 L1440,70 L0,70 Z" fill="rgba(58,120,148,0.16)"/></svg>
+    <svg class="wc" viewBox="0 0 1440 70" fill="none" style="position:absolute;bottom:0;"><path d="M0,28 C180,58 540,4 900,45 C1080,65 1320,18 1440,38 L1440,70 L0,70 Z" fill="rgba(200,228,238,0.2)"/></svg>
+  </div>
+
+  <span class="bird">🕊</span>
+  <span class="bird">🕊</span>
+  <span class="bird">🕊</span>
+
   <div class="hero-content">
-    <p class="hero-eyebrow">Halmstad · Skåne · Sverige</p>
+    <p class="hero-eyebrow">Halmstad &nbsp;·&nbsp; Halland &nbsp;·&nbsp; Sverige</p>
     <h1 class="hero-title"><em>Lillarp</em></h1>
     <p class="hero-sub">Vår gemensamma sommarstuga sedan generationer</p>
-    <div class="hero-address">📍 Halmstad 442, 305 91 Halmstad</div>
+    <div class="hero-badge">📍 Halmstad 442, 305 91 Halmstad</div>
   </div>
-  <div class="waves">
-    <svg class="wave wave1" viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,120 L0,120 Z" fill="rgba(74,143,168,0.15)"/>
-    </svg>
-    <svg class="wave wave2" viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,80 C360,20 720,100 1080,40 C1260,20 1380,60 1440,80 L1440,120 L0,120 Z" fill="rgba(74,143,168,0.12)"/>
-    </svg>
-    <svg class="wave wave3" viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,40 C180,90 540,10 900,70 C1080,100 1320,30 1440,50 L1440,120 L0,120 Z" fill="rgba(184,220,232,0.2)"/>
-    </svg>
+  <div class="hero-scroll"><span>↓</span>utforska</div>
+</div>
+
+<!-- OM -->
+<div id="om" style="background:var(--cream);">
+  <div class="sw">
+    <div class="sh reveal"><h2>Om Lillarp</h2><div class="div"></div><p>Tre familjer – ett hem i skogen nära havet</p></div>
+    <div class="info-grid reveal">
+      <div class="ic"><div class="ic-icon">🏡</div><h3>Stugan</h3><p>Lillarp ligger i skogen nära Halmstads kust. En plats för stillhet, gemenskap och sommarminnens skapande – nära både skog och hav.</p></div>
+      <div class="ic"><div class="ic-icon">👨‍👩‍👧</div><h3>Tre familjer</h3><p>Stugan ägs gemensamt. Utanför schemalagd tid är det fritt att boka – kontakta de övriga ägarna och stäm av att det passar.</p></div>
+      <div class="ic"><div class="ic-icon">🌊</div><h3>Läget</h3><ul><li>Nära Ringenäs &amp; Tylösand</li><li>Skog och natur inpå knuten</li><li>Lugnt och avskilt</li><li>Perfekt sommaridyll</li></ul></div>
+      <div class="ic"><div class="ic-icon">📋</div><h3>Regler</h3><ul><li>Lämna stugan i gott skick</li><li>Meddela vid bokning utanför schema</li><li>Dela på underhållskostnader</li><li>Respektera varandras tid</li></ul></div>
+    </div>
   </div>
 </div>
 
-<!-- OM STUGAN -->
-<section id="om">
-  <div class="section-header reveal">
-    <h2>Om Lillarp</h2>
-    <div class="divider"></div>
-    <p>Tre familjer – en stuga – oändliga minnen</p>
-  </div>
-  <div class="info-grid reveal">
-    <div class="info-card">
-      <div class="card-icon">🏡</div>
-      <h3>Stugan</h3>
-      <p>Lillarp är vår gemensamma sommarstuga belägen i Halmstad. Stugan ägs och delas av tre familjer och är en plats för avkoppling, gemenskap och sommarminnens skapande.</p>
-    </div>
-    <div class="info-card">
-      <div class="card-icon">👨‍👩‍👧‍👦</div>
-      <h3>Tre familjer</h3>
-      <p>Vi är tre familjer som gemensamt förvaltar och njuter av Lillarp. Under övrig tid utanför schemat är det fritt att boka – bara ta kontakt med de övriga ägarna och stäm av att det passar.</p>
-    </div>
-    <div class="info-card">
-      <div class="card-icon">🌊</div>
-      <h3>Läget</h3>
-      <ul>
-        <li>Nära Ringenäs och Tylösand</li>
-        <li>Vacker natur och strandnärhet</li>
-        <li>Lugnt och avskilt läge</li>
-        <li>Perfekt för sommaridyll</li>
-      </ul>
-    </div>
-    <div class="info-card">
-      <div class="card-icon">📋</div>
-      <h3>Regler &amp; Rutiner</h3>
-      <ul>
-        <li>Lämna stugan i gott skick</li>
-        <li>Meddela vid bokning utanför schema</li>
-        <li>Dela på underhållskostnader</li>
-        <li>Respektera varandras tid</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
 <!-- SCHEMA -->
-<div class="schema-section" id="schema">
-  <div class="section-header reveal">
-    <h2>Sommarschemat</h2>
-    <div class="divider"></div>
-    <p>Rullande schema – nästa år roterar familjerna ett steg</p>
-  </div>
+<div class="schema-bg" id="schema">
+  <div class="sh reveal"><h2>Sommarschemat</h2><div class="div"></div><p>Rullande schema – roterar ett steg varje år</p></div>
   <div class="schema-grid reveal">
-    <div class="schema-card">
-      <div class="schema-month">Juni</div>
-      <div class="schema-family">Familj 1</div>
-      <div class="schema-note">1 juni – 30 juni</div>
-    </div>
-    <div class="schema-card current">
-      <div class="schema-month">Juli</div>
-      <div class="schema-family">Familj 2</div>
-      <div class="schema-note">1 juli – 31 juli</div>
-    </div>
-    <div class="schema-card">
-      <div class="schema-month">Augusti</div>
-      <div class="schema-family">Familj 3</div>
-      <div class="schema-note">1 aug – 31 aug</div>
-    </div>
+    <div class="sc"><div class="sc-month">Juni</div><div class="sc-fam">Familj 1</div><div class="sc-dates">1 juni – 30 juni</div></div>
+    <div class="sc active"><div class="sc-month">Juli</div><div class="sc-fam">Familj 2</div><div class="sc-dates">1 juli – 31 juli</div></div>
+    <div class="sc"><div class="sc-month">Augusti</div><div class="sc-fam">Familj 3</div><div class="sc-dates">1 aug – 31 aug</div></div>
   </div>
-  <p style="text-align:center; color:#6a8a9a; font-size:0.85rem; margin-top:1.5rem; font-style:italic;">
-    Utanför din period? Kontakta de andra ägarna för att stämma av om stugan är ledig.
-  </p>
+  <p style="text-align:center;color:#6a9a7a;font-size:0.78rem;margin-top:1rem;font-style:italic;">Utanför din period? Kontakta de andra ägarna för att stämma av.</p>
 </div>
 
 <!-- KARTOR -->
-<section id="kartor" style="max-width:1100px; margin:0 auto; padding:5rem 2rem;">
-  <div class="section-header reveal">
-    <h2>Kartor</h2>
-    <div class="divider"></div>
-    <p>Se läget och tomtgränser för Lillarp</p>
-  </div>
-  <div class="maps-grid reveal">
-    <div class="map-card">
-      <div class="map-card-header">
-        <span>🗺</span>
-        <h3>Google Maps – Lillarp</h3>
-      </div>
-      <a href="https://www.google.com/maps/search/Halmstad+442,+305+91+Halmstad" target="_blank" style="display:block; text-decoration:none;">
-        <div class="map-preview">
-          <div class="map-preview-icon">📍</div>
-          <div class="map-preview-text">Halmstad 442, 305 91 Halmstad</div>
-          <div class="map-preview-coords">56°40′N · 12°51′E</div>
-          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(45,104,128,0);transition:background 0.2s;" onmouseover="this.style.background='rgba(45,104,128,0.08)'" onmouseout="this.style.background='rgba(45,104,128,0)'">
-            <span style="background:var(--sea);color:white;padding:0.4rem 1.2rem;border-radius:2px;font-size:0.8rem;font-weight:700;letter-spacing:0.1em;opacity:0;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'">ÖPPNA KARTA →</span>
-          </div>
-        </div>
-      </a>
-      <div class="map-card-footer">
-        <a class="map-link" href="https://www.google.com/maps/search/Halmstad+442,+305+91+Halmstad" target="_blank">🗺 Öppna i Google Maps</a>
-        <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=Halmstad+442,+305+91+Halmstad" target="_blank">🧭 Vägbeskrivning</a>
-        <a class="map-link" href="https://maps.apple.com/?q=Halmstad+442,+305+91+Halmstad" target="_blank">🍎 Apple Maps</a>
-      </div>
-    </div>
+<div id="kartor" style="background:var(--cream);">
+  <div class="sw">
+    <div class="sh reveal"><h2>Kartor</h2><div class="div"></div><p>Läge och tomtgränser för Lillarp</p></div>
+    <div class="maps-grid reveal">
 
-    <div class="map-card">
-      <div class="map-card-header">
-        <span>📐</span>
-        <h3>Lantmäteriet – Tomtgränser</h3>
-      </div>
-      <a href="https://minkarta.lantmateriet.se/?e=343500&n=6273500&z=16&background=topowebb&layers=fastighetsindelning" target="_blank" style="display:block; text-decoration:none;">
-        <div class="map-preview lantmat">
-          <div class="map-preview-icon">🏡</div>
-          <div class="map-preview-text">Visa fastighet &amp; tomtgränser</div>
-          <div class="map-preview-coords">Lantmäteriets Min Karta</div>
+      <div class="mt">
+        <div class="mt-head"><span>🗺</span><h3>Google Maps</h3></div>
+        <a class="mt-vis" href="https://www.google.com/maps/place/56%C2%B041'18.1%22N+12%C2%B044'13.1%22E" target="_blank">
+          <div class="mt-icon">📍</div>
+          <div class="mt-info">
+            <strong>Lillarp – Halmstad 442</strong>
+            <small>56°41'18.1"N &nbsp;12°44'13.1"E</small>
+          </div>
+        </a>
+        <div class="mt-coords">
+          <span>WGS84: 56.688361, 12.737528</span>
+          <span>SWEREF: N 6284984 E 361393</span>
         </div>
-      </a>
-      <div class="map-card-footer">
-        <a class="map-link" href="https://minkarta.lantmateriet.se/?e=343500&n=6273500&z=16&background=topowebb&layers=fastighetsindelning" target="_blank">📍 Min Karta – Tomtgränser</a>
-        <a class="map-link" href="https://www.lantmateriet.se/sv/fastigheter/Fastighetsinformation/Registrera-fastighetsadress/" target="_blank">📋 Fastighetsinfo</a>
-        <a class="map-link" href="https://kartor.lantmateriet.se/" target="_blank">🗂 Alla Lantmäterikartor</a>
+        <div class="mt-links">
+          <a class="mb" href="https://www.google.com/maps/place/56%C2%B041'18.1%22N+12%C2%B044'13.1%22E" target="_blank">🗺 Visa karta</a>
+          <a class="mb" href="https://www.google.com/maps/dir/?api=1&destination=56.688361,12.737528" target="_blank">🧭 Vägbeskrivning</a>
+          <a class="mb" href="https://maps.apple.com/?ll=56.688361,12.737528&q=Lillarp" target="_blank">🍎 Apple Maps</a>
+        </div>
       </div>
+
+      <div class="mt">
+        <div class="mt-head"><span>📐</span><h3>Lantmäteriet – Tomtgränser</h3></div>
+        <a class="mt-vis" href="https://minkarta.lantmateriet.se/?e=361393&n=6284984&z=16&background=topowebb&layers=fastighetsindelning" target="_blank">
+          <div class="mt-icon">🏡</div>
+          <div class="mt-info">
+            <strong>Fastighet &amp; tomtgränser</strong>
+            <small>SWEREF 99 TM: N 6284984, E 361393</small>
+          </div>
+        </a>
+        <div class="mt-coords">
+          <span>Min Karta med fastighetsindelning aktiverad</span>
+        </div>
+        <div class="mt-links">
+          <a class="mb" href="https://minkarta.lantmateriet.se/?e=361393&n=6284984&z=16&background=topowebb&layers=fastighetsindelning" target="_blank">📍 Tomtgränser</a>
+          <a class="mb" href="https://minkarta.lantmateriet.se/?e=361393&n=6284984&z=14&background=orto&layers=fastighetsindelning" target="_blank">🛰 Satellitvy</a>
+          <a class="mb" href="https://kartor.lantmateriet.se/" target="_blank">🗂 Fler kartor</a>
+        </div>
+      </div>
+
     </div>
   </div>
-</section>
+</div>
 
 <!-- VÄDER -->
-<div class="weather-section" id="vader">
-  <div class="section-header reveal">
-    <h2>Vädret vid kusten</h2>
-    <div class="divider"></div>
-    <p>Ringenäs och Tylösand · 19 mars 2026</p>
-  </div>
-  <div class="weather-grid reveal">
-    <div class="weather-card">
-      <div class="weather-station">📍 Ringenäs</div>
-      <div class="weather-temp">8°C</div>
-      <div class="weather-desc">🌤 Delvis molnigt, frisk vind från väster</div>
-      <div class="weather-details">
-        <div class="weather-detail">
-          <span class="weather-detail-label">Vind</span>
-          <span class="weather-detail-value">12 m/s V</span>
-        </div>
-        <div class="weather-detail">
-          <span class="weather-detail-label">Lufttryck</span>
-          <span class="weather-detail-value">1014 hPa</span>
-        </div>
-        <div class="weather-detail">
-          <span class="weather-detail-label">Luftfuktighet</span>
-          <span class="weather-detail-value">78%</span>
-        </div>
-        <div class="weather-detail">
-          <span class="weather-detail-label">Våghöjd</span>
-          <span class="weather-detail-value">1.2 m</span>
-        </div>
+<div class="w-bg" id="vader">
+  <div class="sh reveal"><h2>Vädret vid kusten</h2><div class="div"></div><p>Ringenäs och Tylösand · 19 mars 2026</p></div>
+  <div class="w-grid reveal">
+    <div class="wc">
+      <div class="ws">📍 Ringenäs</div>
+      <div class="wt">8°C</div>
+      <div class="wd">🌤 Delvis molnigt · frisk vind från väster</div>
+      <div class="wg">
+        <div class="wi"><span class="wl">Vind</span><span class="wv">12 m/s V</span></div>
+        <div class="wi"><span class="wl">Lufttryck</span><span class="wv">1014 hPa</span></div>
+        <div class="wi"><span class="wl">Fuktighet</span><span class="wv">78%</span></div>
+        <div class="wi"><span class="wl">Våghöjd</span><span class="wv">1.2 m</span></div>
       </div>
     </div>
-    <div class="weather-card">
-      <div class="weather-station">📍 Tylösand</div>
-      <div class="weather-temp">9°C</div>
-      <div class="weather-desc">🌥 Lätt molnigt, svag bris</div>
-      <div class="weather-details">
-        <div class="weather-detail">
-          <span class="weather-detail-label">Vind</span>
-          <span class="weather-detail-value">8 m/s SV</span>
-        </div>
-        <div class="weather-detail">
-          <span class="weather-detail-label">Lufttryck</span>
-          <span class="weather-detail-value">1015 hPa</span>
-        </div>
-        <div class="weather-detail">
-          <span class="weather-detail-label">Luftfuktighet</span>
-          <span class="weather-detail-value">74%</span>
-        </div>
-        <div class="weather-detail">
-          <span class="weather-detail-label">Siktlängd</span>
-          <span class="weather-detail-value">god</span>
-        </div>
+    <div class="wc">
+      <div class="ws">📍 Tylösand</div>
+      <div class="wt">9°C</div>
+      <div class="wd">🌥 Lätt molnigt · svag bris</div>
+      <div class="wg">
+        <div class="wi"><span class="wl">Vind</span><span class="wv">8 m/s SV</span></div>
+        <div class="wi"><span class="wl">Lufttryck</span><span class="wv">1015 hPa</span></div>
+        <div class="wi"><span class="wl">Fuktighet</span><span class="wv">74%</span></div>
+        <div class="wi"><span class="wl">Siktlängd</span><span class="wv">God</span></div>
       </div>
     </div>
   </div>
-  <div class="weather-date">Väderobservationer från 19 mars 2026 via vagagenten</div>
-  <p style="text-align:center; margin-top:1.5rem;">
-    <a href="https://www.smhi.se/vader/observationer/sjovader#ws=wpt-a,proxy=wpt-a,district=none,type=observation" target="_blank" style="color:var(--sky); font-size:0.85rem;">🌊 Se aktuellt sjöväder på SMHI →</a>
-  </p>
+  <div class="w-foot">Observationer 19 mars 2026 via vagagenten &nbsp;·&nbsp;
+    <a href="https://www.smhi.se/vader/observationer/sjovader" target="_blank" style="color:#9ccce0;">SMHI sjöväder →</a>
+  </div>
 </div>
 
 <!-- GALLERI -->
-<div class="gallery-section" id="galleri">
-  <div class="section-header reveal">
-    <h2>Bildgalleri</h2>
-    <div class="divider"></div>
-    <p>Minnen från Lillarp</p>
+<div class="g-bg" id="galleri">
+  <div class="sh reveal"><h2>Bildgalleri</h2><div class="div"></div><p>Minnen från Lillarp</p></div>
+  <div class="g-grid reveal" id="gg">
+    <div class="gi gb" onclick="om(this)"><div class="gp"><span>🏡</span><p>Stugan<br><small>Lägg till foto</small></p></div></div>
+    <div class="gi" onclick="om(this)"><div class="gp"><span>🌅</span><p>Solnedgång</p></div></div>
+    <div class="gi" onclick="om(this)"><div class="gp"><span>🌊</span><p>Havet</p></div></div>
+    <div class="gi" onclick="om(this)"><div class="gp"><span>🌲</span><p>Skogen</p></div></div>
+    <div class="gi" onclick="om(this)"><div class="gp"><span>🍓</span><p>Sommarmat</p></div></div>
+    <div class="gi" onclick="om(this)"><div class="gp"><span>🎣</span><p>Fiske</p></div></div>
   </div>
-  <div class="gallery-grid reveal" id="galleryGrid">
-    <div class="gallery-item large" onclick="openModal(this)">
-      <div class="gallery-placeholder">
-        <span>🏡</span>
-        <p>Stugan – framsida<br><small>Lägg till foto</small></p>
-      </div>
-    </div>
-    <div class="gallery-item" onclick="openModal(this)">
-      <div class="gallery-placeholder"><span>🌅</span><p>Solnedgång<br><small>Lägg till foto</small></p></div>
-    </div>
-    <div class="gallery-item" onclick="openModal(this)">
-      <div class="gallery-placeholder"><span>🌊</span><p>Havet<br><small>Lägg till foto</small></p></div>
-    </div>
-    <div class="gallery-item" onclick="openModal(this)">
-      <div class="gallery-placeholder"><span>🌿</span><p>Trädgården<br><small>Lägg till foto</small></p></div>
-    </div>
-    <div class="gallery-item" onclick="openModal(this)">
-      <div class="gallery-placeholder"><span>🍓</span><p>Sommarmat<br><small>Lägg till foto</small></p></div>
-    </div>
-    <div class="gallery-item" onclick="openModal(this)">
-      <div class="gallery-placeholder"><span>🎣</span><p>Fiske<br><small>Lägg till foto</small></p></div>
-    </div>
-    <div class="gallery-item" onclick="openModal(this)">
-      <div class="gallery-placeholder"><span>🌺</span><p>Blommor<br><small>Lägg till foto</small></p></div>
-    </div>
-  </div>
-
-  <input type="file" id="imageInput" accept="image/*" multiple style="display:none" onchange="handleImageUpload(event)">
-  <button class="gallery-upload-btn" onclick="document.getElementById('imageInput').click()">+ Lägg till foton</button>
+  <input type="file" id="fIn" accept="image/*" multiple style="display:none" onchange="hu(event)">
+  <button class="g-btn" onclick="document.getElementById('fIn').click()">+ Lägg till foton</button>
 </div>
-
-<!-- Gallery Modal -->
-<div class="gallery-modal" id="galleryModal">
-  <button class="modal-close" onclick="closeModal()">✕</button>
-  <img id="modalImage" src="" alt="">
-</div>
+<div class="gm" id="gm"><button class="gm-close" onclick="cm()">✕</button><img id="gmi" src="" alt=""></div>
 
 <!-- DAGBOK -->
-<div style="background: #fdfaf5;" id="dagbok">
-  <section class="diary-section" style="max-width:800px; margin:0 auto; padding:5rem 2rem;">
-    <div class="section-header reveal">
-      <h2>Stugdagboken</h2>
-      <div class="divider"></div>
-      <p>Dela upplevelser, tankar och meddelanden</p>
-    </div>
-
-    <div class="diary-entry-form reveal">
-      <textarea id="diaryText" placeholder="Skriv ett inlägg... Vad hände idag vid stugan? Något att tänka på? Hälsa till de andra familjerna!"></textarea>
-      <div class="diary-form-footer">
-        <div class="diary-author">
-          <select id="diaryFamily">
-            <option value="1">Familj 1</option>
-            <option value="2">Familj 2</option>
-            <option value="3">Familj 3</option>
-          </select>
-          <input type="text" id="diaryName" placeholder="Ditt namn" style="flex:1;">
+<div class="db-bg" id="dagbok">
+  <div class="sh reveal"><h2>Stugdagboken</h2><div class="div"></div><p>Dela upplevelser, tankar och meddelanden</p></div>
+  <div class="dw reveal">
+    <div class="df">
+      <textarea id="dt" placeholder="Skriv ett inlägg... vad hände idag? Något att tänka på? Hälsa till de andra familjerna!"></textarea>
+      <div class="df-foot">
+        <div class="dw-sel">
+          <select id="df"><option value="1">Familj 1</option><option value="2">Familj 2</option><option value="3">Familj 3</option></select>
+          <input type="text" id="dn" placeholder="Ditt namn" style="flex:1">
         </div>
-        <button class="btn-post" onclick="postDiaryEntry()">✏ Publicera inlägg</button>
+        <button class="bp" onclick="pe()">✏ Publicera</button>
       </div>
     </div>
-
-    <div class="diary-entries" id="diaryEntries">
-      <div class="diary-entry family-1">
-        <div class="diary-entry-meta">
-          <span class="diary-entry-author">Familj 1 – Välkomstinlägg</span>
-          <span class="diary-entry-date">20 mars 2026</span>
-        </div>
-        <p>Välkommen till Lillarps digitala dagbok! 🌿 Här kan alla tre familjer skriva inlägg, dela minnen och lämna meddelanden till varandra. Ha en underbar sommar!</p>
+    <div class="de-list" id="dl">
+      <div class="de f1">
+        <div class="de-meta"><span class="de-auth">Familj 1 – Välkomst</span><span class="de-date">20 mars 2026</span></div>
+        <p>Välkommen till Lillarps digitala dagbok! 🌿 Här kan alla tre familjer skriva inlägg, dela minnen och lämna meddelanden. Ha en underbar sommar!</p>
       </div>
     </div>
-  </section>
+  </div>
 </div>
 
 <!-- PROJEKT -->
-<div class="projects-section" id="projekt">
-  <div class="section-header reveal" style="max-width:1000px; margin:0 auto 3rem;">
-    <h2>Projekt &amp; Planering</h2>
-    <div class="divider"></div>
-    <p>Förbättringar, renoveringar och drömmar för Lillarp</p>
+<div class="pj-bg" id="projekt">
+  <div class="sh reveal"><h2>Projekt &amp; Planering</h2><div class="div"></div><p>Förbättringar, renoveringar och drömmar</p></div>
+  <div class="pj-grid reveal" id="pg">
+    <div class="pjc"><div class="pjh"><span class="pjt">🎨 Måla fasaden</span><span class="pb sp">Planerat</span></div><p class="pjd">Byta färg på ytterpanelen. Alla tre familjer röstar på färgval.</p><div class="pbar"><div class="pfill" style="width:10%"></div></div></div>
+    <div class="pjc"><div class="pjh"><span class="pjt">🌱 Trädgårdsodling</span><span class="pb sg">Pågår</span></div><p class="pjd">Köksträdgård med jordgubbar, örter och grönsaker.</p><div class="pbar"><div class="pfill" style="width:45%"></div></div></div>
+    <div class="pjc"><div class="pjh"><span class="pjt">🛁 Uppgradera badrum</span><span class="pb sp">Planerat</span></div><p class="pjd">Ny dusch och klinkers. Budget tas fram inför nästa säsong.</p><div class="pbar"><div class="pfill" style="width:5%"></div></div></div>
+    <div class="pjc"><div class="pjh"><span class="pjt">☀️ Solpaneler</span><span class="pb sp">Idé</span></div><p class="pjd">Undersöka solceller på taket för lägre elkostnad.</p><div class="pbar"><div class="pfill" style="width:0%"></div></div></div>
+    <div class="pjc"><div class="pjh"><span class="pjt">🪴 Utemöbler</span><span class="pb sd">Klart</span></div><p class="pjd">Ny utemöbelgrupp och parasoll inköpta inför 2026.</p><div class="pbar"><div class="pfill" style="width:100%"></div></div></div>
+    <div class="pjc"><div class="pjh"><span class="pjt">🔒 Nytt lås</span><span class="pb sd">Klart</span></div><p class="pjd">Kodlås installerat. Alla familjer har fått koden.</p><div class="pbar"><div class="pfill" style="width:100%"></div></div></div>
   </div>
-  <div class="projects-grid reveal">
-    <div class="project-card">
-      <div class="project-header">
-        <h3 class="project-title">🎨 Måla fasaden</h3>
-        <span class="project-status status-plan">Planerat</span>
-      </div>
-      <p class="project-desc">Byta färg på ytterpanelen. Alla tre familjer röstar på färgval.</p>
-      <div class="project-progress-bar"><div class="project-progress-fill" style="width:10%"></div></div>
-    </div>
-    <div class="project-card">
-      <div class="project-header">
-        <h3 class="project-title">🌱 Trädgårdsodling</h3>
-        <span class="project-status status-progress">Pågår</span>
-      </div>
-      <p class="project-desc">Anlägga köksträdgård med jordgubbar, örter och grönsaker.</p>
-      <div class="project-progress-bar"><div class="project-progress-fill" style="width:45%"></div></div>
-    </div>
-    <div class="project-card">
-      <div class="project-header">
-        <h3 class="project-title">🛁 Uppgradera badrummet</h3>
-        <span class="project-status status-plan">Planerat</span>
-      </div>
-      <p class="project-desc">Ny dusch och klinkers. Budget tas fram inför nästa säsong.</p>
-      <div class="project-progress-bar"><div class="project-progress-fill" style="width:5%"></div></div>
-    </div>
-    <div class="project-card">
-      <div class="project-header">
-        <h3 class="project-title">☀️ Solpaneler</h3>
-        <span class="project-status status-plan">Idé</span>
-      </div>
-      <p class="project-desc">Undersöka möjligheten att installera solceller på taket för lägre elkostnad.</p>
-      <div class="project-progress-bar"><div class="project-progress-fill" style="width:0%"></div></div>
-    </div>
-    <div class="project-card">
-      <div class="project-header">
-        <h3 class="project-title">🪴 Utemöbler</h3>
-        <span class="project-status status-done">Klart</span>
-      </div>
-      <p class="project-desc">Ny utemöbelgrupp och parasoll inköpta och monterade inför säsongen 2026.</p>
-      <div class="project-progress-bar"><div class="project-progress-fill" style="width:100%"></div></div>
-    </div>
-    <div class="project-card">
-      <div class="project-header">
-        <h3 class="project-title">🔒 Nytt lås</h3>
-        <span class="project-status status-done">Klart</span>
-      </div>
-      <p class="project-desc">Kodlås installerat på ytterdörren. Alla familjer har fått koden.</p>
-      <div class="project-progress-bar"><div class="project-progress-fill" style="width:100%"></div></div>
-    </div>
-  </div>
-  <div style="text-align:center; margin-top:2rem;">
-    <button class="gallery-upload-btn" onclick="addProject()">+ Nytt projekt</button>
-  </div>
+  <button class="add-b" onclick="ap()">+ Nytt projekt</button>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <p><strong>Lillarp</strong> &nbsp;·&nbsp; Halmstad 442, 305 91 Halmstad</p>
-  <p style="margin-top:0.5rem;">🌿 En plats att längta till – varje sommar</p>
+  <p style="margin-top:0.35rem;">🌿 En plats att längta till – varje sommar</p>
 </footer>
 
 <script>
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
-  reveals.forEach(r => observer.observe(r));
+  const obs = new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:0.08});
+  document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
 
-  // Gallery upload
-  function handleImageUpload(event) {
-    const files = Array.from(event.target.files);
-    const grid = document.getElementById('galleryGrid');
-    files.forEach(file => {
-      const url = URL.createObjectURL(file);
-      const item = document.createElement('div');
-      item.className = 'gallery-item';
-      item.innerHTML = `<img src="${url}" alt="${file.name}" style="width:100%;height:100%;object-fit:cover;">`;
-      item.onclick = () => {
-        document.getElementById('modalImage').src = url;
-        document.getElementById('galleryModal').classList.add('open');
-      };
-      grid.insertBefore(item, grid.lastElementChild);
-    });
-  }
+  function hu(e){const g=document.getElementById('gg');Array.from(e.target.files).forEach(f=>{const u=URL.createObjectURL(f);const el=document.createElement('div');el.className='gi';el.innerHTML=`<img src="${u}" alt="${f.name}">`;el.onclick=()=>{document.getElementById('gmi').src=u;document.getElementById('gm').classList.add('open');};g.insertBefore(el,g.lastElementChild);});}
+  function om(el){const i=el.querySelector('img');if(!i)return;document.getElementById('gmi').src=i.src;document.getElementById('gm').classList.add('open');}
+  function cm(){document.getElementById('gm').classList.remove('open');}
+  document.getElementById('gm').addEventListener('click',function(e){if(e.target===this)cm();});
 
-  function openModal(el) {
-    const img = el.querySelector('img');
-    if (!img) return;
-    document.getElementById('modalImage').src = img.src;
-    document.getElementById('galleryModal').classList.add('open');
-  }
+  function pe(){const t=document.getElementById('dt').value.trim();if(!t)return;const f=document.getElementById('df').value;const n=document.getElementById('dn').value.trim()||'Anonym';const d=new Date().toLocaleDateString('sv-SE',{year:'numeric',month:'long',day:'numeric'});const el=document.createElement('div');el.className=`de f${f}`;el.innerHTML=`<div class="de-meta"><span class="de-auth">Familj ${f} – ${n}</span><span class="de-date">${d}</span></div><p>${t}</p>`;document.getElementById('dl').insertBefore(el,document.getElementById('dl').firstChild);document.getElementById('dt').value='';document.getElementById('dn').value='';}
 
-  function closeModal() {
-    document.getElementById('galleryModal').classList.remove('open');
-  }
-
-  document.getElementById('galleryModal').addEventListener('click', function(e) {
-    if (e.target === this) closeModal();
-  });
-
-  // Diary
-  const entries = [];
-
-  function postDiaryEntry() {
-    const text = document.getElementById('diaryText').value.trim();
-    const family = document.getElementById('diaryFamily').value;
-    const name = document.getElementById('diaryName').value.trim() || 'Anonym';
-    if (!text) return;
-    const now = new Date();
-    const date = now.toLocaleDateString('sv-SE', { year:'numeric', month:'long', day:'numeric' });
-    const entryEl = document.createElement('div');
-    entryEl.className = `diary-entry family-${family}`;
-    entryEl.innerHTML = `
-      <div class="diary-entry-meta">
-        <span class="diary-entry-author">Familj ${family} – ${name}</span>
-        <span class="diary-entry-date">${date}</span>
-      </div>
-      <p>${text}</p>
-    `;
-    const container = document.getElementById('diaryEntries');
-    container.insertBefore(entryEl, container.firstChild);
-    document.getElementById('diaryText').value = '';
-    document.getElementById('diaryName').value = '';
-  }
-
-  // Add project
-  function addProject() {
-    const title = prompt('Projektnamn:');
-    if (!title) return;
-    const desc = prompt('Beskrivning:') || '';
-    const grid = document.querySelector('.projects-grid');
-    const card = document.createElement('div');
-    card.className = 'project-card';
-    card.innerHTML = `
-      <div class="project-header">
-        <h3 class="project-title">💡 ${title}</h3>
-        <span class="project-status status-plan">Nytt</span>
-      </div>
-      <p class="project-desc">${desc}</p>
-      <div class="project-progress-bar"><div class="project-progress-fill" style="width:0%"></div></div>
-    `;
-    grid.appendChild(card);
-  }
+  function ap(){const t=prompt('Projektnamn:');if(!t)return;const d=prompt('Beskrivning:')||'';const el=document.createElement('div');el.className='pjc';el.innerHTML=`<div class="pjh"><span class="pjt">💡 ${t}</span><span class="pb sp">Nytt</span></div><p class="pjd">${d}</p><div class="pbar"><div class="pfill" style="width:0%"></div></div>`;document.getElementById('pg').appendChild(el);}
 </script>
 </body>
 </html>
