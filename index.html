@@ -383,11 +383,39 @@
 
     .map-card-header span { font-size: 1.3rem; }
 
-    .map-card iframe {
+    .map-preview {
       width: 100%;
-      height: 350px;
-      border: none;
-      display: block;
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
+      background: linear-gradient(135deg, #e8f4f8 0%, #d4eaf2 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .map-preview.lantmat {
+      background: linear-gradient(135deg, #f0f7eb 0%, #dcefd8 100%);
+    }
+
+    .map-preview-icon {
+      font-size: 3.5rem;
+      line-height: 1;
+    }
+
+    .map-preview-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: var(--deep-sea);
+      text-align: center;
+    }
+
+    .map-preview-coords {
+      font-size: 0.75rem;
+      color: var(--driftwood);
+      letter-spacing: 0.05em;
     }
 
     .map-card-footer {
@@ -948,30 +976,39 @@
         <span>🗺</span>
         <h3>Google Maps – Lillarp</h3>
       </div>
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2000!2d12.85!3d56.68!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTbCsDQwJzQ4LjAiTiAxMsKwNTEnMDAuMCJF!5e0!3m2!1ssv!2sse!4v1234567890"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
+      <a href="https://www.google.com/maps/search/Halmstad+442,+305+91+Halmstad" target="_blank" style="display:block; text-decoration:none;">
+        <div class="map-preview">
+          <div class="map-preview-icon">📍</div>
+          <div class="map-preview-text">Halmstad 442, 305 91 Halmstad</div>
+          <div class="map-preview-coords">56°40′N · 12°51′E</div>
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(45,104,128,0);transition:background 0.2s;" onmouseover="this.style.background='rgba(45,104,128,0.08)'" onmouseout="this.style.background='rgba(45,104,128,0)'">
+            <span style="background:var(--sea);color:white;padding:0.4rem 1.2rem;border-radius:2px;font-size:0.8rem;font-weight:700;letter-spacing:0.1em;opacity:0;transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0'">ÖPPNA KARTA →</span>
+          </div>
+        </div>
+      </a>
       <div class="map-card-footer">
-        <a class="map-link" href="https://www.google.com/maps/search/Halmstad+442,+305+91+Halmstad" target="_blank">🔗 Öppna i Google Maps</a>
-        <a class="map-link" href="https://maps.google.com/maps?q=Halmstad+442,+305+91+Halmstad&navigate=yes" target="_blank">🧭 Vägbeskrivning</a>
+        <a class="map-link" href="https://www.google.com/maps/search/Halmstad+442,+305+91+Halmstad" target="_blank">🗺 Öppna i Google Maps</a>
+        <a class="map-link" href="https://www.google.com/maps/dir/?api=1&destination=Halmstad+442,+305+91+Halmstad" target="_blank">🧭 Vägbeskrivning</a>
+        <a class="map-link" href="https://maps.apple.com/?q=Halmstad+442,+305+91+Halmstad" target="_blank">🍎 Apple Maps</a>
       </div>
     </div>
+
     <div class="map-card">
       <div class="map-card-header">
         <span>📐</span>
         <h3>Lantmäteriet – Tomtgränser</h3>
       </div>
-      <iframe
-        src="https://kso.etjanster.lantmateriet.se/?lang=sv#"
-        allowfullscreen=""
-        loading="lazy">
-      </iframe>
+      <a href="https://minkarta.lantmateriet.se/?e=343500&n=6273500&z=16&background=topowebb&layers=fastighetsindelning" target="_blank" style="display:block; text-decoration:none;">
+        <div class="map-preview lantmat">
+          <div class="map-preview-icon">🏡</div>
+          <div class="map-preview-text">Visa fastighet &amp; tomtgränser</div>
+          <div class="map-preview-coords">Lantmäteriets Min Karta</div>
+        </div>
+      </a>
       <div class="map-card-footer">
-        <a class="map-link" href="https://minkarta.lantmateriet.se/?e=343500&n=6273500&z=15&background=topowebb&layers=fastighetsindelning" target="_blank">📍 Min Karta – Fastighet</a>
-        <a class="map-link" href="https://kso.etjanster.lantmateriet.se/" target="_blank">🗂 Lantmäteriets kartor</a>
+        <a class="map-link" href="https://minkarta.lantmateriet.se/?e=343500&n=6273500&z=16&background=topowebb&layers=fastighetsindelning" target="_blank">📍 Min Karta – Tomtgränser</a>
+        <a class="map-link" href="https://www.lantmateriet.se/sv/fastigheter/Fastighetsinformation/Registrera-fastighetsadress/" target="_blank">📋 Fastighetsinfo</a>
+        <a class="map-link" href="https://kartor.lantmateriet.se/" target="_blank">🗂 Alla Lantmäterikartor</a>
       </div>
     </div>
   </div>
